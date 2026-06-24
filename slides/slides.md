@@ -695,9 +695,9 @@ Questions, pushback, war stories from your own systems — all welcome
 
 **This talk's materials:**
 
-- Slides + notebooks: this repo
-- My paper: `main.pdf` in this repo
-- Code/data for my paper: `github.com/MorgenPronk/physics-informed-roast-rollout-comparison`
+- Slides + notebooks: **`github.com/MorgenPronk/intro-to-piml`**
+- My paper: `main.pdf` in the repo above
+- Code + data for my paper: `github.com/MorgenPronk/physics-informed-roast-rollout-comparison`
 
 **Contact:** morgenpronk@alum.mit.edu
 
