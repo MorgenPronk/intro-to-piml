@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physics-Informed Machine Learning — guest lecture</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.css">
+
+  <style>
+    :root {
+      --mit-red: #A31F34;
+      --mit-gray: #8A8B8C;
+      --mit-dark: #222;
+      --mit-light-gray: #f3f3f3;
+    }
+
+    /* Tighter, more deliberate typography */
+    .reveal {
+      font-family: "Helvetica Neue", "Inter", Helvetica, Arial, sans-serif;
+      color: var(--mit-dark);
+      font-size: 28px;
+    }
+
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+      font-family: "Helvetica Neue", "Inter", Helvetica, Arial, sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-transform: none;
+      text-align: left;
+      margin-bottom: 0.35em;
+      margin-top: 0;
+      color: var(--mit-dark);
+    }
+
+    .reveal h1 { font-size: 2.1em; line-height: 1.1; }
+    .reveal h2 { font-size: 1.55em; line-height: 1.15; border-bottom: 3px solid var(--mit-red); padding-bottom: 0.18em; margin-bottom: 0.5em; }
+    .reveal h3 { font-size: 1.2em; color: var(--mit-red); margin-bottom: 0.3em; }
+    .reveal h4 { font-size: 1em; color: var(--mit-gray); font-weight: 600; }
+
+    .reveal .slides { text-align: left; }
+    .reveal section { text-align: left; }
+
+    .reveal p { line-height: 1.35; margin: 0.35em 0; }
+    .reveal li { line-height: 1.35; margin: 0.25em 0; }
+    .reveal ul, .reveal ol { display: block; margin-left: 1.2em; }
+
+    .reveal strong { color: var(--mit-red); font-weight: 700; }
+    .reveal em { color: var(--mit-dark); }
+
+    .reveal a { color: var(--mit-red); text-decoration: none; border-bottom: 1px solid var(--mit-red); }
+
+    .reveal code {
+      font-family: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      background: var(--mit-light-gray);
+      padding: 0.05em 0.35em;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+
+    .reveal pre {
+      box-shadow: none;
+      width: 100%;
+      font-size: 0.5em;
+    }
+
+    .reveal pre code {
+      background: #fafafa;
+      color: #222;
+      border-left: 3px solid var(--mit-red);
+      padding: 0.7em 0.9em;
+      max-height: 480px;
+      line-height: 1.35;
+    }
+
+    /* Title slide */
+    .title-slide h1 { font-size: 2.6em; }
+    .title-slide .subtitle { font-size: 1.1em; color: var(--mit-gray); margin-top: 0; }
+    .title-slide .meta {
+      margin-top: 1.8em;
+      font-size: 0.7em;
+      color: var(--mit-gray);
+      border-top: 1px solid var(--mit-gray);
+      padding-top: 0.7em;
+    }
+
+    /* Section divider slide */
+    .section-divider {
+      background: var(--mit-red);
+      color: white !important;
+    }
+    .section-divider h1, .section-divider h2 {
+      color: white !important;
+      border: none;
+    }
+    .section-divider .section-num {
+      font-size: 0.7em;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 0.4em;
+    }
+
+    /* Two-column layout helper */
+    .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5em; }
+    .col { min-width: 0; }
+    .col img { max-width: 100%; height: auto; }
+
+    /* Image inside a slide */
+    .reveal img.figure {
+      max-height: 480px;
+      width: auto;
+      display: block;
+      margin: 0.4em auto;
+      border: 1px solid var(--mit-light-gray);
+    }
+    .reveal img.tight { border: none; }
+    .caption {
+      font-size: 0.7em;
+      color: var(--mit-gray);
+      text-align: center;
+      margin-top: 0.3em;
+    }
+
+    /* Callout */
+    .callout {
+      background: var(--mit-light-gray);
+      border-left: 4px solid var(--mit-red);
+      padding: 0.7em 1em;
+      margin: 0.6em 0;
+      font-size: 0.92em;
+    }
+
+    /* Reference / citation footer */
+    .ref {
+      font-size: 0.62em;
+      color: var(--mit-gray);
+      margin-top: 1em;
+      border-top: 1px solid var(--mit-light-gray);
+      padding-top: 0.5em;
+    }
+
+    /* Progress bar in MIT red */
+    .reveal .progress { color: var(--mit-red); }
+    .reveal .controls { color: var(--mit-red); }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section data-markdown="slides.md?v=8"
+               data-separator="^\r?\n---\r?\n$"
+               data-separator-vertical="^\r?\n--\r?\n$"
+               data-separator-notes="^Note:"
+               data-charset="utf-8">
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/markdown/markdown.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/math/math.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      controls: true,
+      progress: true,
+      transition: 'none',
+      width: 1280,
+      height: 760,
+      margin: 0.06,
+      katex: {
+        version: 'latest',
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false },
+          { left: '\\(', right: '\\)', display: false },
+          { left: '\\[', right: '\\]', display: true }
+        ],
+        ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      },
+      plugins: [RevealMarkdown, RevealHighlight, RevealMath.KaTeX, RevealNotes]
+    });
+  </script>
+</body>
+</html>
